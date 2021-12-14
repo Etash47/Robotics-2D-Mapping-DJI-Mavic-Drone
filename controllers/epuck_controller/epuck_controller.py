@@ -16,7 +16,6 @@ EPUCK_AXLE_DIAMETER = 0.053 # ePuck's wheels are 53mm apart.
 EPUCK_MAX_WHEEL_SPEED = 0.125669815
 MAX_SPEED = 6.28
 
-# Ishika and I found that 1.5 was most optimal for smoothness
 SPEED_DIVISOR = 1
 
 # get the time step of the current world.
@@ -109,29 +108,24 @@ num_waypoints = 0
 goal_waypoint_index = 0
 
 # Function that provides theta dot and r dot based on error sources
-def get_theta_dot_and_r_dot(euclid_error, bearing_error):
+def feedback_controller(euclid_error, bearing_error):
   # Case that we are far away and not pointed in the right direction of travel
   if (abs(bearing_error) > math.pi/5 and euclid_error > 0.1):
-    #print("======== ALIGNING ============")
     X_dot_R = 0
     theta_dot = bearing_error # Prioritize correcting bearing error
     return(X_dot_R, theta_dot)
 
-  # Case that we are very close, but not oriented in the right direction
-  #elif(euclid_error < 0.05):
-    #print("======== ORIENTING ============")
-   # X_dot_R = 0
-    #theta_dot = heading_error # Prioritize correcting heading error
-    #return(X_dot_R, theta_dot)
 
   else :
-    #print("======== DRIVING ============")
     X_dot_R = euclid_error
     theta_dot = bearing_error     # Equally balance distance and bearing error
     return(X_dot_R, theta_dot)
 
 # Intial state is wait
 state = 'wait'
+
+
+
 
 while robot.step(timestep) != -1:
 
@@ -190,18 +184,15 @@ while robot.step(timestep) != -1:
         # STEP 2: Calculate sources of error
         euclid_error = math.sqrt((goal_x - pose_x) ** 2 + (goal_y - pose_y) ** 2)  # Euclidean distance
         bearing_error = (math.atan2((goal_y - pose_y), (goal_x - pose_x)) - pose_theta)
-        #heading_error = goal_theta - pose_theta
 
         # Ensuring value is between -pi and pi
         if bearing_error > 6.28+3.14/2: bearing_error -= 6.28
         if bearing_error < -3.14: bearing_error += 6.28
 
-        # Ensuring value is between -pi and pi
-        #if heading_error > 6.28+3.14/2: heading_error -= 6.28
-        #if heading_error < -3.14: heading_error += 6.28
+
 
         # Feedback Controller get X, theta dot values
-        (X_dot_R, theta_dot) = get_theta_dot_and_r_dot(euclid_error, bearing_error)
+        (X_dot_R, theta_dot) = feedback_controller(euclid_error, bearing_error)
 
         # Inverse Kinematics Equations
         phi_r = X_dot_R + (EPUCK_AXLE_DIAMETER * theta_dot) / 2
@@ -231,8 +222,7 @@ while robot.step(timestep) != -1:
         if (euclid_error < distance_threshold):  # we are close to waypoint_index
 
             if (waypoint_index < goal_waypoint_index):  # waypoint is not final goal
-                #print("Waypoint x:", goal_x, "Pose x:", pose_x)
-                #print("Waypoint y:", goal_y, "Pose y:", pose_y)
+
                 waypoint_index += 1  # update waypoint index
 
             elif (waypoint_index == goal_waypoint_index):  #
@@ -258,4 +248,3 @@ while robot.step(timestep) != -1:
 leftMotor.setVelocity(0)
 rightMotor.setVelocity(0)
 
-# Enter here exit cleanup code.

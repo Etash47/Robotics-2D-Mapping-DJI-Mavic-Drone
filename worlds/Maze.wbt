@@ -1,8 +1,8 @@
 #VRML_SIM R2021b utf8
 WorldInfo {
   info [
-    "This demonstration shows a DJI Mavic 2 PRO flying over a rural area."
-    "After the drone has taken off, you can control it with the keyboard of your computer."
+    "CSCI 3302 Final Project"
+    "Etash Kalra, Ethan Meyer, Ishika Patel"
   ]
   title "DJI Mavic 2 PRO demo"
   basicTimeStep 8

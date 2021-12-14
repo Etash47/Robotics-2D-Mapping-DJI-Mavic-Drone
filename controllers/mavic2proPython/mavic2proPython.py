@@ -1,3 +1,4 @@
+# LIST OF RESOURCES USED FOR UNDERSTANDING DRONE CONTROLS!
 # https://github.com/cyberbotics/webots/blob/released/projects/robots/dji/mavic/controllers/mavic2pro/mavic2pro.c
 # https://cyberbotics.com/doc/reference/motor?tab-language=python#wb_motor_set_position
 # https://cyberbotics.com/doc/reference/camera?tab-language=python#wb_camera_get_image
@@ -109,6 +110,22 @@ state = "fly"
 
 slept = 0
 
+print("------DRONE MOVEMENT CONTROLS-------")
+print("Keypad Up: Tilt Up")
+print("Keypad Down: Tilt Down")
+print("Keypad Left: Rotate Left")
+print("Keypad Right: Rotate Right")
+
+print(" ")
+
+print("------DRONE CAMERA CONTROLS-------")
+print("W: Tilt Camera Up")
+print("S: Tilt Camera Down")
+print("A: Rotate Camera Left")
+print("D: Rotate Camera Right")
+
+print(" ")
+
 while (robot.step(TIME_STEP) != -1):
     if state == "fly":
 	
@@ -210,11 +227,11 @@ while (robot.step(TIME_STEP) != -1):
             f2 = open(sys.path[0] + '/../communicator.txt', 'w')
             f2.write("1")
             f2.close()
-            print("Changed")
+            print(" ")
+            
             break
             
 
     
     
     
-    #set_motor_speeds(0, -0, -0, 0)
