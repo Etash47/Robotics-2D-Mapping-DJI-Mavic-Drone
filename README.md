@@ -1,6 +1,11 @@
 # Robotics-2D-Mapping-DJI-Mavic-Drone
 CSCI 3302 Final Project (Contributors: Etash Kalra, Ishika Patel, Ethan Meyer)
 
+
+## Project Demonstration
+
+https://youtu.be/Z2HJEjcXYgs 
+
 ## Project Description
 
 We have created a multi-robot simulation that leverages color detection, image analysis, shortest path Algorithms, and robot odometry to allow two robots to work together to complete a maze in uncharted territory.
@@ -74,6 +79,3 @@ D: Rotate Camera Right
 9. E-puck should be processing and moving along the planned shortest path map by A*
 10. E-puck should reach the blue end point!
 
-## Project Demonstration
-
-https://youtu.be/Z2HJEjcXYgs 
