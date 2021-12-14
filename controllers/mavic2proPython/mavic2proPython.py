@@ -123,8 +123,10 @@ print("W: Tilt Camera Up")
 print("S: Tilt Camera Down")
 print("A: Rotate Camera Left")
 print("D: Rotate Camera Right")
+print("Space Bar: Analyze Image and Plan Path")
 
 print(" ")
+
 
 while (robot.step(TIME_STEP) != -1):
     if state == "fly":
