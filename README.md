@@ -40,4 +40,28 @@ pip install numpy
 
 ## Webots Instructions
 
+1. Lauch Webots Maze File
+2. Press Play
+3. Click Within the Simulation Window
+4. The Drone should be starting up.
+
+The following are helpful keyboard commands to navigating the Drone Flight and Camera Position:
+
+------DRONE MOVEMENT CONTROLS-------
+Keypad Up: Tilt Up
+Keypad Down: Tilt Down
+Keypad Left: Rotate Left
+Keypad Right: Rotate Right
+
+------DRONE CAMERA CONTROLS-------
+W: Tilt Camera Up
+S: Tilt Camera Down
+A: Rotate Camera Left
+D: Rotate Camera Right
+
+6. Shift the Mavic Camera and Position to hover over the fill maze to capture in the camera
+7. Once the map is displayed in the center of the camera simulation: Press Space Bar to take Image of the Full Map, this prompts 3 images to populate your computer to show pixel anaysis (These may pop up behind your Webots tab)
+8. Press any key on those images to move past the analysis images and to start the E-Puck Simulation
+9. E-puck should be processing and moving along the planned shortest path map by A*
+
 ## Project Demonstration
